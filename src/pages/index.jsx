@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container } from "@/components";
 import { useRouter } from "next/router";
 

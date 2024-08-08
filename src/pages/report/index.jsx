@@ -1,15 +1,16 @@
-import { Container, ResultCard, ChatBox } from "@/components";
+import { Container, ReportCard } from "@/components";
+import { ChatBox } from "@/components";
 import { MdOutlineFileDownload } from "react-icons/md";
-import { Box, StyledButton } from "./styles";
+import { Box, StyledButton } from "@/styles/report.styled";
 
 const Report = () => {
   return (
     <Container>
       <Box>
-        <ResultCard title="Possible Conditions" output="Generating..." />
-        <ResultCard title="Possible Causes" output="Generating..." />
-        <ResultCard title="Skin Care Routines" output="Generating..." />
-        <ResultCard title="Product Suggestion" output="Generating..." />
+        <ReportCard title="Possible Conditions" output="Generating..." />
+        <ReportCard title="Possible Causes" output="Generating..." />
+        <ReportCard title="Skin Care Routines" output="Generating..." />
+        <ReportCard title="Product Suggestion" output="Generating..." />
       </Box>
 
       <StyledButton className="fx-center">
