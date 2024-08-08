@@ -22,7 +22,7 @@ export const ChatContainer = styled.div`
           background: rgba(168, 255, 115, 0.39);
           border-radius: 0.3125rem;
           padding: 1.25rem 1.5rem;
-          font-size: 1.3125rem;
+          font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
           line-height: 143%;
           max-width: 688px;
         }
@@ -47,7 +47,7 @@ export const ChatContainer = styled.div`
             background: #fff;
             border-radius: 0.3125rem;
             padding: 1.25rem 1.5rem;
-            font-size: 1.3125rem;
+            font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
             line-height: 143%;
           }
         }
@@ -80,12 +80,13 @@ export const ChatContainer = styled.div`
         width: 100%;
         border: none;
         outline: none;
-        font-size: 1.3125rem;
+        font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
         line-height: 143%;
         font-weight: 500;
 
         &::placeholder {
           color: #9c9c9c;
+          font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
         }
       }
     }
