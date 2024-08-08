@@ -12,7 +12,7 @@ const Card = styled.div`
 
     p {
       color: #9c9c9c;
-      font-size: 1.3125rem;
+      font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
       line-height: 143%;
     }
   }
