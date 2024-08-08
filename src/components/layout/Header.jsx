@@ -12,8 +12,8 @@ const Header = () => {
 					<Link href='/'>
 						<h1 className='text-xl lg:text-3xl font-medium'>Eternal AI</h1>
 					</Link>
-					{/* BTN */}
-					<Button className={'bg-secondary'}>
+
+					<Button className={'bg-secondary text-white'}>
 						<MdOutlinePhone />
 						<span>Book a dermatologist</span>
 					</Button>
