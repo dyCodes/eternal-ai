@@ -1,13 +1,43 @@
-const ImageUploadBox = ({ image, onChange }) => {
+import { toast } from 'react-toastify';
+
+const ImageUploadBox = ({ imagePreview, onChange }) => {
+  // Handle image change
+  const handleChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Allowed MIME types
+    const allowedMimeTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'image/heic',
+    ];
+
+    // Check file type
+    if (!allowedMimeTypes.includes(file.type)) {
+      return toast.error(
+        'Invalid file type. Only JPEG, PNG, WEBP, and HEIC are allowed.'
+      );
+    }
+
+    // Check file size (e.g., max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      return toast.error('File size should not exceed 5MB.');
+    }
+
+    onChange(event);
+  };
+
   return (
     <div className='flex items-center justify-center w-full'>
       <label
         htmlFor='dropzone-file'
         className='flex flex-col items-center justify-center w-full min-h-60 border border-secondary-940 border-dashed rounded-lg cursor-pointer bg-white'
       >
-        {image ? (
+        {imagePreview ? (
           <img
-            src={image}
+            src={imagePreview}
             className={'h-full max-h-80'}
             alt='condition-image'
           />
@@ -33,7 +63,7 @@ const ImageUploadBox = ({ image, onChange }) => {
               drop
             </p>
             <p className='text-xs text-gray-500'>
-              PNG, JPG, WEBP or HEIC (MAX. 1200x800px)
+              PNG, JPG, WEBP or HEIC (MAX: 5MB)
             </p>
           </div>
         )}
@@ -42,7 +72,7 @@ const ImageUploadBox = ({ image, onChange }) => {
           id='dropzone-file'
           type='file'
           className='hidden'
-          onChange={(event) => onChange(event)}
+          onChange={handleChange}
         />
       </label>
     </div>
