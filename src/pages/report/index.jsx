@@ -5,6 +5,7 @@ import { MdOutlineFileDownload } from 'react-icons/md';
 import { Box, StyledButton } from '@/styles/report.styled';
 import { useRouter } from 'next/router';
 import { Preloader } from '@/components/ui/Preloader';
+import { toast } from 'react-toastify';
 
 const Report = () => {
   const router = useRouter();
@@ -16,8 +17,26 @@ const Report = () => {
     if (!storedReportData) {
       router.push('/'); // Redirect to home page if no report data
     } else {
-      // console.log('storedReportData: ', storedReportData);
-      setReportData(JSON.parse(storedReportData));
+      const data = JSON.parse(storedReportData);
+      setReportData(data);
+      // console.log('reportData: ', data);
+
+      // Check if all arrays are empty
+      const {
+        possible_conditions = [],
+        possible_causes = [],
+        skin_care_routines = [],
+        product_suggestions = [],
+      } = data;
+      // Show toast message if all arrays are empty
+      if (
+        !possible_conditions.length &&
+        !possible_causes.length &&
+        !skin_care_routines.length &&
+        !product_suggestions.length
+      ) {
+        toast.info('Insufficient information. Please provide more context.');
+      }
     }
   }, []);
 
