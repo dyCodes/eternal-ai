@@ -47,6 +47,7 @@ export default function Home() {
       ...formData,
       imageFile: null,
       mimeType: null,
+      date: new Date().toDateString(),
     };
     localStorage.setItem('userData', JSON.stringify(userData));
 
