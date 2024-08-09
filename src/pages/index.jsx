@@ -25,12 +25,17 @@ export default function Home() {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setFormData((prev) => ({
-      ...prev,
-      imageFile: file,
-      mimeType: file.type,
-      imagePreview: URL.createObjectURL(file),
-    }));
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData((prev) => ({
+        ...prev,
+        imageFile: file,
+        mimeType: file.type,
+        imagePreview: reader.result,
+      }));
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -40,7 +45,6 @@ export default function Home() {
     // Save form data to local storage
     const userData = {
       ...formData,
-      imagePreview: null,
       imageFile: null,
       mimeType: null,
     };
@@ -82,6 +86,7 @@ export default function Home() {
           <h6>Image Upload</h6>
 
           <ImageUploadBox
+            imageFile={formData.imageFile}
             imagePreview={formData.imagePreview}
             onChange={(event) => handleImageChange(event)}
           />
