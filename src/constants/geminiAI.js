@@ -1,4 +1,5 @@
-export const systemInstruction = `Generate a list (up to 5 items each) of possible_conditions (with likeliness), possible_causes (with likeliness), skin_care_routines, and product_suggestions that match the user’s symptoms and details. If the input is unclear leave each array empty. Your response must be a JSON object with the following structure:
+export const systemInstruction = `Based on the provided user details and optional image, generate a JSON object with up to 5 items for each category. The JSON object should follow this structure:
+
 {
   "possible_conditions": [
     { "text": "Condition", "likeliness": 1-100 }  // Likelihood as a percentage
@@ -12,5 +13,14 @@ export const systemInstruction = `Generate a list (up to 5 items each) of possib
   "product_suggestions": [
     { "text": "Product" }
   ],
-  "note": "This is a note"
-}`;
+	"image_analysis": "Description of image analysis",
+  "note": "Additional notes or context"
+}
+
+- **possible_conditions**: List potential conditions based on the input.
+- **possible_causes**: List potential causes with their likelihood.
+- **skin_care_routines**: Provide recommended skincare routines.
+- **product_suggestions**: Suggest relevant products.
+- **note**: Any extra information or observations.
+
+If the input is ambiguous or insufficient, leave each array empty. Ensure that the structure and data types of the JSON object conform to the example provided.`;
