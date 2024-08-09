@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Card = styled.div`
   align-self: start;
@@ -10,10 +10,11 @@ const Card = styled.div`
   .body {
     padding: 1.3125rem 1.375rem;
 
-    p {
-      color: #9c9c9c;
-      font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
-      line-height: 143%;
+    li {
+      color: var(--secondary-color);
+      list-style: disc;
+      margin-left: 18px;
+      margin-bottom: 5px;
     }
   }
 `;

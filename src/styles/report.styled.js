@@ -1,11 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Box = styled.div`
   display: grid;
-  gap: 2.75rem;
+  gap: 30px 36px;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
   @media (max-width: 460px) {
+    gap: 18px 0;
     grid-template-columns: 1fr;
   }
 
