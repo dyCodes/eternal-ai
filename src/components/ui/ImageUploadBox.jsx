@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-const ImageUploadBox = ({ imagePreview, onChange }) => {
+const ImageUploadBox = ({ imageFile, imagePreview, onChange }) => {
   // Handle image change
   const handleChange = (event) => {
     const file = event.target.files[0];
@@ -35,7 +35,7 @@ const ImageUploadBox = ({ imagePreview, onChange }) => {
         htmlFor='dropzone-file'
         className='flex flex-col items-center justify-center w-full min-h-60 border border-secondary-940 border-dashed rounded-lg cursor-pointer bg-white'
       >
-        {imagePreview ? (
+        {imageFile ? (
           <img
             src={imagePreview}
             className={'h-full max-h-80'}

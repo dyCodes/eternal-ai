@@ -81,6 +81,12 @@ body {
   }
 }
 
+.link {
+  color: #659945;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+
 /* Other styles */
 
 /* FORM */

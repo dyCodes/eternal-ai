@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ReportHeader = styled.section`
   display: grid;
@@ -22,10 +22,7 @@ export const ReportHeader = styled.section`
     p.gemini {
       display: flex;
       align-items: center;
-      a {
-        color: #659945;
-        text-decoration: underline;
-      }
+      gap: 0 6px;
     }
   }
 `;

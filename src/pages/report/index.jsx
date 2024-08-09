@@ -6,6 +6,7 @@ import { Box, StyledButton } from '@/styles/report.styled';
 import { useRouter } from 'next/router';
 import { Preloader } from '@/components/ui/Preloader';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 const Report = () => {
   const router = useRouter();
@@ -60,10 +61,12 @@ const Report = () => {
         <ReportCard title='Product Suggestion' output={product_suggestions} />
       </Box>
 
-      <StyledButton className='fx-center'>
-        <span>Download Report</span>
-        <MdOutlineFileDownload />
-      </StyledButton>
+      <Link href='/report/print'>
+        <StyledButton className='fx-center'>
+          <span>Download Report</span>
+          <MdOutlineFileDownload />
+        </StyledButton>
+      </Link>
 
       <ChatBox />
     </Container>
