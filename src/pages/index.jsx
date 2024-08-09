@@ -25,21 +25,24 @@ export default function Home() {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    const mimeType = file?.type;
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData((prev) => ({ ...prev, image: reader.result, mimeType }));
-      };
-      reader.readAsDataURL(file);
-    }
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData((prev) => ({
+        ...prev,
+        image: reader.result,
+        mimeType: file.type,
+      }));
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // console.log(formData);
+
+    // Save form data to local storage
+    localStorage.setItem('formData', JSON.stringify(formData));
 
     try {
       const response = await httpClient.post('/report', formData);
@@ -47,10 +50,8 @@ export default function Home() {
 
       if (status === 200) {
         const reportData = JSON.parse(data);
-
-        // save report data & form data to local storage
+        // Save report data to local storage
         localStorage.setItem('reportData', JSON.stringify(reportData));
-        localStorage.setItem('formData', JSON.stringify(formData));
 
         // Redirect to report page
         router.push('/report');

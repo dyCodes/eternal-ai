@@ -1,4 +1,34 @@
+import { toast } from 'react-toastify';
+
 const ImageUploadBox = ({ image, onChange }) => {
+  // Handle image change
+  const handleChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Allowed MIME types
+    const allowedMimeTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'image/heic',
+    ];
+
+    // Check file type
+    if (!allowedMimeTypes.includes(file.type)) {
+      return toast.error(
+        'Invalid file type. Only JPEG, PNG, WEBP, and HEIC are allowed.'
+      );
+    }
+
+    // Check file size (e.g., max 3MB)
+    if (file.size > 3 * 1024 * 1024) {
+      return toast.error('File size should not exceed 3MB.');
+    }
+
+    onChange(event);
+  };
+
   return (
     <div className='flex items-center justify-center w-full'>
       <label
@@ -42,7 +72,7 @@ const ImageUploadBox = ({ image, onChange }) => {
           id='dropzone-file'
           type='file'
           className='hidden'
-          onChange={(event) => onChange(event)}
+          onChange={handleChange}
         />
       </label>
     </div>
