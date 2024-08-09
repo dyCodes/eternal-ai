@@ -1,14 +1,14 @@
-import React from "react";
-import { Inter } from "next/font/google";
-import Header from "./Header";
+import React from 'react';
+import { Inter } from 'next/font/google';
+import Header from './Header';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 const Layout = ({ children }) => {
   return (
     <div className={inter.className}>
       <Header />
-      <main className="mt-8">{children}</main>
+      <main className='my-8'>{children}</main>
     </div>
   );
 };

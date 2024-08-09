@@ -29,11 +29,11 @@ const PrintReport = () => {
       <ReportHeader>
         <div>
           <p>Patient</p>
-          <p>Dele Obi</p>
+          <p>{userData?.name || 'N/A'}</p>
         </div>
         <div>
           <p>Date</p>
-          <p>25-05-2024</p>
+          <p>{userData?.date || 'N/A'}</p>
         </div>
 
         <div>
@@ -72,12 +72,12 @@ const PrintReport = () => {
 
         <div className='paragraph-box'>
           <h6>Duration</h6>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <p>{userData?.duraion || 'N/A'}</p>
         </div>
 
         <div className='paragraph-box'>
           <h6>Changes Over Time</h6>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <p>{userData?.changes || 'N/A'}</p>
         </div>
       </ReportInfoWrapper>
 
@@ -86,21 +86,21 @@ const PrintReport = () => {
         <div className='info-grid'>
           <div className='paragraph-box'>
             <h6>Age</h6>
-            <p>Lorem</p>
+            <p>{userData?.age || 'N/A'}</p>
           </div>
 
           <div className='paragraph-box'>
             <h6>Gender</h6>
-            <p>Lorem</p>
+            <p>{userData?.gender || 'N/A'}</p>
           </div>
 
           <div className='paragraph-box'>
             <h6>Allergies</h6>
-            <p>Lorem</p>
+            <p>{userData?.allergies || 'N/A'}</p>
           </div>
           <div className='paragraph-box'>
             <h6>Medications</h6>
-            <p>Lorem</p>
+            <p>{userData?.medications || 'N/A'}</p>
           </div>
         </div>
       </ReportInfoWrapper>
@@ -110,36 +110,26 @@ const PrintReport = () => {
         <div className='info-grid'>
           <div className='paragraph-box'>
             <h6>Sun Exposure</h6>
-            <p>Lorem</p>
+            <p>{userData?.sun_exposure || 'N/A'}</p>
           </div>
           <div className='paragraph-box'>
             <h6>Dietary Habits</h6>
-            <p>Lorem</p>
+            <p>{userData?.dietary_habit || 'N/A'}</p>
           </div>
           <div className='paragraph-box'>
-            <h6>Occupational Hazards</h6>
-            <p>Lorem</p>
+            <h6>Location</h6>
+            <p>{userData?.location || 'N/A'}</p>
           </div>
           <div className='paragraph-box'>
-            <h6>Recent Travels</h6>
-            <p>Lorem</p>
+            <h6>Trigger</h6>
+            <p>{userData?.trigger || 'N/A'}</p>
           </div>
         </div>
       </ReportInfoWrapper>
 
       {/* Additional Notes */}
       <ReportInfoWrapper title='Additional Notes'>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Ac sodales est at et eget
-          morbi dui aliquet. Lacus gravida neque quam viverra. Sollicitudin non
-          tempor nisl cursus bibendum vitae quis amet justo.Lorem ipsum dolor
-          sit amet consectetur. Ac sodales est at et eget morbi dui aliquet.
-          Lacus gravida neque quam viverra. Sollicitudin non tempor nisl cursus
-          bibendum vitae quis amet justo.Lorem ipsum dolor sit amet consectetur.
-          Ac sodales est at et eget morbi dui aliquet. Lacus gravida neque quam
-          viverra. Sollicitudin non tempor nisl cursus bibendum vitae quis amet
-          justo.
-        </p>
+        <p>{reportData?.note || 'N/A'}</p>
       </ReportInfoWrapper>
 
       {/* AI Generated Notes */}
@@ -174,29 +164,28 @@ const PrintReport = () => {
         <div className='paragraph-box'>
           <h6>Possible Conditions</h6>
           <p>
-            Lorem ipsum dolor sit amet consectetur. Ac sodales est at et eget
-            morbi dui aliquet. Lacus gravida neque quam viverra. Sollicitudin
-            non tempor nisl cursus bibendum vitae quis amet justo.Lorem ipsum
-            dolor sit amet consectetur. Ac sodales est at et eget morbi dui
-            aliquet. Lacus gravida neque quam viverra. Sollicitudin non tempor
-            nisl cursus bibendum vitae quis amet justo.Lorem ipsum dolor sit
-            amet consectetur. Ac sodales est at et eget morbi dui aliquet. Lacus
-            gravida neque quam viverra. Sollicitudin non tempor nisl cursus
-            bibendum vitae quis amet justo.
+            {reportData?.possible_conditions.length &&
+              reportData?.possible_conditions.map((item, index) => (
+                <li key={index} className='item'>
+                  {item.text}
+                  {item.likeliness && (
+                    <span className='text-[14px] ml-2 text-gray-500'>
+                      {item.likeliness}%
+                    </span>
+                  )}
+                </li>
+              ))}
           </p>
         </div>
         <div className='paragraph-box'>
           <h6>Product Suggestions</h6>
           <p>
-            Lorem ipsum dolor sit amet consectetur. Ac sodales est at et eget
-            morbi dui aliquet. Lacus gravida neque quam viverra. Sollicitudin
-            non tempor nisl cursus bibendum vitae quis amet justo.Lorem ipsum
-            dolor sit amet consectetur. Ac sodales est at et eget morbi dui
-            aliquet. Lacus gravida neque quam viverra. Sollicitudin non tempor
-            nisl cursus bibendum vitae quis amet justo.Lorem ipsum dolor sit
-            amet consectetur. Ac sodales est at et eget morbi dui aliquet. Lacus
-            gravida neque quam viverra. Sollicitudin non tempor nisl cursus
-            bibendum vitae quis amet justo.
+            {reportData?.product_suggestions.length &&
+              reportData?.product_suggestions.map((item, index) => (
+                <li key={index} className='item'>
+                  {item.text}
+                </li>
+              ))}
           </p>
         </div>
       </ReportInfoWrapper>
