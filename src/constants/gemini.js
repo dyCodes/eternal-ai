@@ -8,13 +8,4 @@ export const DefaultChatHistory = [
       },
     ],
   },
-  {
-    id: 2,
-    role: 'user',
-    parts: [
-      {
-        text: 'What are some of the side effects of sylicidic acid on oily skin like mine?',
-      },
-    ],
-  },
 ];
