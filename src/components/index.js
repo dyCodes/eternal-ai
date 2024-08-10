@@ -1,4 +1,4 @@
-export { default as ChatBox } from './report/ChatBox/ChatBox';
+export { default as ChatBox } from './ChatBox/ChatBox';
 export { default as Calendar } from './ui/Calendar';
 export { default as World } from './ui/World';
 export { default as Layout } from './layout/Layout';

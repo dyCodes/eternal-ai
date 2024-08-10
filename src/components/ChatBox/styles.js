@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ChatContainer = styled.div`
   margin: 3.75rem 0;
@@ -22,7 +22,7 @@ export const ChatContainer = styled.div`
           background: rgba(168, 255, 115, 0.39);
           border-radius: 0.3125rem;
           padding: 1.25rem 1.5rem;
-          font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
+          font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1rem);
           line-height: 143%;
           max-width: 688px;
         }
@@ -47,7 +47,7 @@ export const ChatContainer = styled.div`
             background: #fff;
             border-radius: 0.3125rem;
             padding: 1.25rem 1.5rem;
-            font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
+            font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1rem);
             line-height: 143%;
           }
         }
@@ -72,21 +72,21 @@ export const ChatContainer = styled.div`
 
       .menu-icon {
         right: 1.375rem;
+        color: #222;
       }
 
       input {
-        padding: 1.1875rem 3.9375rem;
+        padding: 0.9375rem 3.875rem;
         background-color: #fff;
         width: 100%;
         border: none;
         outline: none;
-        font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
+        font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.125rem);
         line-height: 143%;
-        font-weight: 500;
 
         &::placeholder {
           color: #9c9c9c;
-          font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1.25rem);
+          font-size: clamp(1rem, 0.8611rem + 0.4444vw, 1rem);
         }
       }
     }
