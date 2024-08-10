@@ -16,11 +16,10 @@ const Report = () => {
     const storedReportData = localStorage.getItem('reportData');
 
     if (!storedReportData) {
-      router.push('/'); // Redirect to home page if no report data
+      router.push('/');
     } else {
       const data = JSON.parse(storedReportData);
       setReportData(data);
-      // console.log('reportData: ', data);
 
       // Check if all arrays are empty
       const {
@@ -29,7 +28,7 @@ const Report = () => {
         skin_care_routines = [],
         product_suggestions = [],
       } = data;
-      // Show toast message if all arrays are empty
+
       if (
         !possible_conditions.length &&
         !possible_causes.length &&
@@ -64,7 +63,7 @@ const Report = () => {
       <Link href='/report/print'>
         <StyledButton className='fx-center'>
           <span>Download Report</span>
-          <MdOutlineFileDownload />
+          <MdOutlineFileDownload size={22} />
         </StyledButton>
       </Link>
 
