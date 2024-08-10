@@ -8,6 +8,7 @@ import { BiLoaderCircle } from 'react-icons/bi';
 import httpClient from '@/api/axios';
 import { toast } from 'react-toastify';
 import { DefaultChatHistory } from '@/constants/gemini';
+import Markdown from 'react-markdown';
 
 const scrollToBottomChat = () => {
   const chatMessages = document.querySelector('.chats');
@@ -145,10 +146,13 @@ const ChatBox = () => {
 };
 
 const MessageCard = ({ message, role }) => {
+  const isBot = role === 'model';
   return (
     <div className={`fx-center ${role === 'model' ? 'robot-box' : 'user-box'}`}>
-      {role === 'model' && <VscRobot className='hidden md:block' size={28} />}
-      <p className='message'>{message}</p>
+      {isBot && <VscRobot className='hidden md:block' size={28} />}
+      <div className='message'>
+        {isBot ? <Markdown>{message}</Markdown> : message}
+      </div>
     </div>
   );
 };
