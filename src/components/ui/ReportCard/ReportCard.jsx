@@ -7,7 +7,7 @@ const ReportCard = ({ title, output }) => {
       <ul className='body'>
         {output.map((item, index) => (
           <li key={index} className='item'>
-            {item.text}
+            {item.text}{' '}
             {item.likeliness && (
               <span className='text-[14px] ml-2 text-gray-500'>
                 {item.likeliness}%
