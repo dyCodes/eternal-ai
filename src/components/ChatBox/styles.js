@@ -12,7 +12,7 @@ export const ChatContainer = styled.div`
     grid-template-rows: 1fr;
 
     .chats {
-      padding: 1.875rem 1.25rem 2px;
+      padding: 1.875rem 1.25rem 0.125rem;
       height: 380px;
       overflow-y: auto;
       scroll-behavior: smooth;

@@ -12,7 +12,7 @@ const Header = () => {
   const pathname = router.pathname;
 
   return (
-    <header className='py-3.5 bg-gradient'>
+    <header className='py-3.5 bg-gradient shadow-sm'>
       <Container>
         <div className='fx-between'>
           <Link href='/'>
