@@ -1,1 +1,2 @@
-export * from "./dummyDoctors";
+export * from './dummyDoctors';
+export * from './bookingData';
