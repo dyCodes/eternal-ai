@@ -24,6 +24,12 @@ const PrintReport = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (reportData && userData) {
+      window.print();
+    }
+  }, [reportData]);
+
   return (
     <Container>
       <ReportHeader>
