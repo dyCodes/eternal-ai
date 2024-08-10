@@ -101,7 +101,7 @@ const ChatBox = () => {
       <div className='chat-item'>
         <div className='chats'>
           {/* <div class='fx-center robot-box'>
-            <VscRobot size={28} />
+            <VscRobot className='hidden md:block' size={28} />
             <p class='message'>
               Hi there! I'm your virtual dermatologist. Feel free to ask me any
               questions about your skin health. Based on the photo and
@@ -123,7 +123,9 @@ const ChatBox = () => {
                 item.role === 'model' ? 'robot-box' : 'user-box'
               }`}
             >
-              {item.role === 'model' && <VscRobot size={28} />}
+              {item.role === 'model' && (
+                <VscRobot className='hidden md:block' size={28} />
+              )}
               <p className='message'>{item.parts[0].text}</p>
             </div>
           ))}
