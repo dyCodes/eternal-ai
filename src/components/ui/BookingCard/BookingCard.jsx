@@ -8,7 +8,7 @@ const BookingCard = ({
   caption,
   description,
   image,
-  setModalIsOpen,
+  toggleModal,
 }) => {
   return (
     <>
@@ -30,11 +30,7 @@ const BookingCard = ({
           </Card>
         </Link>
       ) : (
-        <Card
-          $id={id}
-          $image={image}
-          onClick={() => setModalIsOpen((prev) => !prev)}
-        >
+        <Card $id={id} $image={image} onClick={toggleModal}>
           <div className='info-box'>
             <h5>{title}</h5>
             <div className='info-details'>
