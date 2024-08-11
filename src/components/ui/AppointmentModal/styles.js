@@ -109,6 +109,15 @@ export const StyledModal = styled.div`
       justify-content: space-around;
       padding: 1.125rem;
 
+      @media (max-width: 570px) {
+        flex-direction: column;
+        row-gap: 1rem;
+
+        > svg {
+          display: none;
+        }
+      }
+
       & > div {
         .experience {
           color: #9747ff;
@@ -130,6 +139,7 @@ export const StyledModal = styled.div`
           font-weight: 500;
           display: flex;
           align-items: center;
+          justify-content: center;
         }
 
         p.label {
@@ -138,6 +148,84 @@ export const StyledModal = styled.div`
           color: #9c9c9c;
         }
       }
+    }
+  }
+
+  .user-bio {
+    margin-top: clamp(1.6875rem, 1.5139rem + 0.5556vw, 2rem);
+
+    nav {
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        @media (max-width: 570px) {
+          justify-content: unset;
+        }
+
+        li {
+          padding-bottom: 0.9375rem;
+          border-bottom: 2px solid #cbcbcb;
+          padding: 0 1rem 0.9375rem;
+          cursor: pointer;
+          font-size: 1.125rem;
+          font-weight: 500;
+          color: #9c9c9c;
+
+          &:first-child {
+            border-bottom-color: #6ba249;
+          }
+
+          @media (max-width: 570px) {
+            &:nth-child(n + 2):nth-child(-n + 4) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .about {
+      margin-top: 1.0625rem;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 138%;
+      color: #9c9c9c;
+
+      p:nth-child(2) {
+        margin-top: 1.4rem;
+      }
+    }
+
+    .upload {
+      margin-top: clamp(1.25rem, 1.1111rem + 0.4444vw, 1.5rem);
+      min-height: 151px;
+      background: rgba(168, 255, 115, 0.24);
+      border: 1px dashed #659945;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+
+      p {
+        text-align: center;
+        margin: auto;
+        font-weight: 500;
+        font-size: 0.9375rem;
+        line-height: 113%;
+        color: #9c9c9c;
+      }
+    }
+
+    button.confirm {
+      margin-top: clamp(1.25rem, 1.1111rem + 0.4444vw, 1.5rem);
+      width: 100%;
+      background: #6ba249;
+      border-radius: 5px;
+      padding: 1rem 0;
+      font-weight: 500;
+      font-size: 1.125rem;
+      color: #ffffff;
     }
   }
 `;

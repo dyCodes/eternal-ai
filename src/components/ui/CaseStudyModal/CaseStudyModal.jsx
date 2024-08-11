@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import { BackDrop, StyledModal } from './styles';
+import { toast } from 'react-toastify';
 import { FaCheck } from 'react-icons/fa';
 
 const CaseStudyModal = ({ onCloseModal }) => {
   const [rememberUser, setRememberUser] = useState(false);
+
+  function handleConfirmation() {
+    toast.success('Booked successfully');
+    onCloseModal();
+  }
   return (
     <>
       <BackDrop onClick={onCloseModal} />
@@ -25,7 +31,7 @@ const CaseStudyModal = ({ onCloseModal }) => {
 
           <div className='upload'>
             <p>
-              Add your desired gemini generated demerlogy result, Your
+              Add your desired gemini generated dermatopathology report, Your
               participation is entirely voluntary, and your privacy is always
               protected.
             </p>
@@ -44,7 +50,9 @@ const CaseStudyModal = ({ onCloseModal }) => {
             </span>
           </div>
 
-          <button className='confirm'>Confirm</button>
+          <button className='confirm' onClick={handleConfirmation}>
+            Confirm
+          </button>
         </div>
       </StyledModal>
     </>
