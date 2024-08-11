@@ -5,22 +5,42 @@ import { FaCheck } from 'react-icons/fa';
 import { ReportUploadBox } from '@/components';
 import { caseStudyHelpText } from '@/constants';
 
-const CaseStudyModal = ({ onCloseModal }) => {
+/**
+ * A modal component for booking a case study for medical students.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Function} props.onCloseModal - A function to close the modal.
+ *
+ * @returns {JSX.Element} - The modal component.
+ */
+function CaseStudyModal({ onCloseModal }) {
   const [rememberUser, setRememberUser] = useState(false);
   const [documentFile, setDocumentFile] = useState('');
 
+  /**
+   * Handles the confirmation button click.
+   * Displays a toast message and closes the modal if a document file is uploaded.
+   */
   function handleConfirmation() {
     if (!documentFile) {
       toast.error('Please upload document for appointment');
       return;
     }
     toast.success('Booked successfully');
+    setDocumentFile('');
     onCloseModal();
   }
 
+  /**
+   * Handles the document upload.
+   * Updates the document file name in the component's state.
+   *
+   * @param {Object} file - The uploaded file.
+   */
   const handleUpload = (file) => {
     setDocumentFile(file.name);
   };
+
   return (
     <>
       <BackDrop onClick={onCloseModal} />
@@ -67,6 +87,6 @@ const CaseStudyModal = ({ onCloseModal }) => {
       </StyledModal>
     </>
   );
-};
+}
 
 export default CaseStudyModal;
