@@ -2,14 +2,25 @@ import { BackDrop, StyledModal } from './styles';
 import { CiStar } from 'react-icons/ci';
 import { FaPeopleGroup, FaPersonWalking } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
-import { LineBar } from '@/components';
+import { LineBar, ReportUploadBox } from '@/components';
+import { appointmentHelpText } from '@/constants';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const AppointmentModal = ({ onCloseModal, selectedDoctor }) => {
-  function handleBookAppointment() {
+  const [documentFile, setDocumentFile] = useState('');
+  const handleBookAppointment = () => {
+    if (!documentFile) {
+      toast.error('Please upload document for appointment');
+      return;
+    }
     toast.success('Booked successfully');
     onCloseModal();
-  }
+  };
+
+  const handleUpload = (file) => {
+    setDocumentFile(file.name);
+  };
   return (
     <>
       <BackDrop onClick={onCloseModal} />
@@ -68,13 +79,12 @@ const AppointmentModal = ({ onCloseModal, selectedDoctor }) => {
 
           <div className='about'>{selectedDoctor.about}</div>
 
-          <div className='upload'>
-            <p>
-              Add your desired gemini generated dermatopathology report, the
-              specialist will reach out to you within 24hrs upon the review of
-              your analysis.
-            </p>
-          </div>
+          <ReportUploadBox
+            modalType='appointment'
+            helpText={appointmentHelpText}
+            onChange={(file) => handleUpload(file)}
+            documentFile={documentFile}
+          />
 
           <button className='confirm' onClick={handleBookAppointment}>
             Book Appointment

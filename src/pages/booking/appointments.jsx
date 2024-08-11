@@ -7,8 +7,12 @@ import { dermatologists } from '@/constants';
 
 const Appointments = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedDoctor, setSelectedDoctor] = useState({});
+
+  const filteredDoctors = dermatologists.filter((doctor) =>
+    doctor.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   function toggleModal(id) {
     setSelectedDoctor(dermatologists.find((doc) => doc.id === id));
@@ -34,6 +38,7 @@ const Appointments = () => {
               type='text'
               name='search'
               placeholder='Search doctors name'
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <IoSearchOutline size={21} />
           </div>
@@ -46,9 +51,16 @@ const Appointments = () => {
       </StyledHeader>
 
       <DoctorSection>
-        {dermatologists.map((doctor) => (
-          <DoctorCard key={doctor.id} {...doctor} toggleModal={toggleModal} />
-        ))}
+        {filteredDoctors.length > 0 ? (
+          filteredDoctors.map((doctor) => (
+            <DoctorCard key={doctor.id} {...doctor} toggleModal={toggleModal} />
+          ))
+        ) : (
+          <h3>
+            Sorry, we couldn't find any dermatologists matching your search.
+            Please try again with different criteria or check back later.
+          </h3>
+        )}
       </DoctorSection>
       {modalIsOpen && (
         <AppointmentModal
