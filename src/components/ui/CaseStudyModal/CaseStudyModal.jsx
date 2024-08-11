@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { BackDrop, StyledModal } from './styles';
 import { FaCheck } from 'react-icons/fa';
 
-const CaseStudyModal = ({ setModalIsOpen }) => {
+const CaseStudyModal = ({ onCloseModal }) => {
   const [rememberUser, setRememberUser] = useState(false);
   return (
     <>
-      <BackDrop onClick={() => setModalIsOpen(false)} />
+      <BackDrop onClick={onCloseModal} />
       <StyledModal>
         <div className='banner' />
         <div className='content'>
