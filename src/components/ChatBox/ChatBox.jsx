@@ -8,6 +8,7 @@ import { BiLoaderCircle } from 'react-icons/bi';
 import httpClient from '@/api/axios';
 import { toast } from 'react-toastify';
 import { DefaultChatHistory } from '@/constants/gemini';
+import Markdown from 'react-markdown';
 
 const scrollToBottomChat = () => {
   const chatMessages = document.querySelector('.chats');
@@ -18,7 +19,7 @@ const scrollToBottomChat = () => {
 const ChatBox = () => {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [history, setHistory] = useState([...DefaultChatHistory]);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     const storedChatHistory = JSON.parse(localStorage.getItem('chatHistory'));
@@ -100,34 +101,20 @@ const ChatBox = () => {
 
       <div className='chat-item'>
         <div className='chats'>
-          {/* <div class='fx-center robot-box'>
-            <VscRobot className='hidden md:block' size={28} />
-            <p class='message'>
-              Hi there! I'm your virtual dermatologist. Feel free to ask me any
-              questions about your skin health. Based on the photo and
-              description of your symptoms, I'll use your information to provide
-              personalized insights and recommendations. Let's get started!
-            </p>
-          </div>
-          <div class='fx-center user-box'>
-            <p class='message'>
-              What are some of the side effects of sylicidic acid on oily skin
-              like mine?
-            </p>
-          </div> */}
+          {DefaultChatHistory.map((item) => (
+            <MessageCard
+              key={item.id}
+              message={item.parts[0].text}
+              role={item.role}
+            />
+          ))}
 
           {history.map((item) => (
-            <div
+            <MessageCard
               key={item.id}
-              className={`fx-center ${
-                item.role === 'model' ? 'robot-box' : 'user-box'
-              }`}
-            >
-              {item.role === 'model' && (
-                <VscRobot className='hidden md:block' size={28} />
-              )}
-              <p className='message'>{item.parts[0].text}</p>
-            </div>
+              message={item.parts[0].text}
+              role={item.role}
+            />
           ))}
         </div>
 
@@ -155,6 +142,18 @@ const ChatBox = () => {
         </form>
       </div>
     </ChatContainer>
+  );
+};
+
+const MessageCard = ({ message, role }) => {
+  const isBot = role === 'model';
+  return (
+    <div className={`fx-center ${role === 'model' ? 'robot-box' : 'user-box'}`}>
+      {isBot && <VscRobot className='hidden md:block' size={28} />}
+      <div className='message'>
+        {isBot ? <Markdown>{message}</Markdown> : message}
+      </div>
+    </div>
   );
 };
 
