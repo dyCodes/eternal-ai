@@ -66,4 +66,10 @@ export const DoctorSection = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(322px, 1fr));
   gap: 1.25rem;
+
+  h3 {
+    color: #ff0000;
+    font-weight: 600;
+    font-size: clamp(1.125rem, 0.8819rem + 0.7778vw, 1.5625rem);
+  }
 `;

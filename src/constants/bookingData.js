@@ -16,3 +16,8 @@ export const bookingData = [
       'Opt in to have your case reviewed for free by medical students worldwide. Gain additional insights while supporting the education of future dermatologists.',
   },
 ];
+
+export const appointmentHelpText =
+  'Add your desired gemini generated dermatopathology report, the specialist will reach out to you within 24hrs upon the review of your analysis.';
+export const caseStudyHelpText =
+  '  Add your desired gemini generated dermatopathology report, Your participation is entirely voluntary, and your privacy is always protected.';
