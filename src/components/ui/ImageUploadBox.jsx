@@ -1,31 +1,50 @@
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-const ImageUploadBox = ({ imageFile, imagePreview, onChange }) => {
+const allowedMimeTypes = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/heic',
+];
+
+const ImageUploadBox = ({ imageFile, onChange }) => {
+  const [imagesPreview, setImagesPreview] = useState([]);
+
   // Handle image change
   const handleChange = (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+    const files = event.target.files; // Get all selected files
+    console.log(files);
 
-    // Allowed MIME types
-    const allowedMimeTypes = [
-      'image/jpeg',
-      'image/png',
-      'image/webp',
-      'image/heic',
-    ];
+    if (!files.length) return;
 
-    // Check file type
-    if (!allowedMimeTypes.includes(file.type)) {
-      return toast.error(
-        'Invalid file type. Only JPEG, PNG, WEBP, and HEIC are allowed.'
-      );
+    setImagesPreview([]); // Clear previous images
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      if (!allowedMimeTypes.includes(file.type)) {
+        toast.error(
+          `Invalid file type for ${file.name}. Only JPEG, PNG, WEBP, and HEIC are allowed.`
+        );
+        continue;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error(`File size for ${file.name} should not exceed 5MB.`);
+        continue;
+      }
+
+      // Convert the image to base64
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imageBase64String = reader.result;
+        setImagesPreview((prev) => [...prev, imageBase64String]);
+      };
+      reader.readAsDataURL(file);
     }
 
-    // Check file size (e.g., max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      return toast.error('File size should not exceed 5MB.');
-    }
-
+    // console.log(imagesPreview);
     onChange(event);
   };
 
@@ -33,14 +52,21 @@ const ImageUploadBox = ({ imageFile, imagePreview, onChange }) => {
     <div className='flex items-center justify-center w-full'>
       <label
         htmlFor='dropzone-file'
-        className='flex flex-col items-center justify-center w-full min-h-60 border border-secondary-940 border-dashed rounded-lg cursor-pointer bg-white'
+        className='flex flex-col items-center justify-center w-full min-h-60 max-h-80 border border-secondary-940 border-dashed rounded-lg cursor-pointer bg-white'
       >
         {imageFile ? (
-          <img
-            src={imagePreview}
-            className={'h-full max-h-80'}
-            alt='condition-image'
-          />
+          <div className='w-full px-2 flex justify-center overflow-hidden'>
+            {imagesPreview.map((image, index) => (
+              <div className=''>
+                <img
+                  key={index}
+                  src={image}
+                  className={'h-full max-h-80 object-cover px-1'}
+                  alt='upload image'
+                />
+              </div>
+            ))}
+          </div>
         ) : (
           <div className='flex flex-col items-center justify-center pt-4 pb-5'>
             <svg
@@ -72,6 +98,7 @@ const ImageUploadBox = ({ imageFile, imagePreview, onChange }) => {
           id='dropzone-file'
           type='file'
           className='hidden'
+          multiple={true}
           onChange={handleChange}
         />
       </label>
