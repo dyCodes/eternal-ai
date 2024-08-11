@@ -9,24 +9,28 @@ const PrintReport = () => {
   const router = useRouter();
   const [reportData, setReportData] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [reportImages, setReportImages] = useState(null);
 
   useEffect(() => {
     const storedUserData = localStorage.getItem('userData');
     const storedReportData = localStorage.getItem('reportData');
+    const storedReportImages = localStorage.getItem('reportImages');
 
     if (!storedUserData || !storedReportData) {
       router.push('/'); // Redirect to home page if no report data
     } else {
       const userData = JSON.parse(storedUserData);
       const reportData = JSON.parse(storedReportData);
+      const reportImages = JSON.parse(storedReportImages);
       setUserData(userData);
       setReportData(reportData);
+      setReportImages(reportImages);
     }
   }, []);
 
   useEffect(() => {
     if (reportData && userData) {
-      window.print();
+      // window.print();
     }
   }, [reportData]);
 
@@ -34,16 +38,17 @@ const PrintReport = () => {
     <Container>
       <ReportHeader>
         <div>
-          <p>Patient</p>
+          <h5>Patient</h5>
           <p>{userData?.name || 'N/A'}</p>
         </div>
+
         <div>
-          <p>Date</p>
+          <h5>Date</h5>
           <p>{userData?.date || 'N/A'}</p>
         </div>
 
         <div>
-          <p>Generated & Compiled With</p>
+          <h5>Generated & Compiled With</h5>
           <p className='gemini'>
             <SiGooglegemini />
             <Link
@@ -58,9 +63,18 @@ const PrintReport = () => {
       </ReportHeader>
 
       {/* Photos */}
-      {userData?.imagePreview && (
+      {reportImages?.length && (
         <ReportInfoWrapper title='Photo'>
-          <img src={userData?.imagePreview} alt='skin_photo' />
+          <div className='flex items-center gap-2 flex-wrap'>
+            {reportImages.map((image, index) => (
+              <img
+                key={index}
+                className='block w-[48%] md:w-full max-w-[230px]'
+                src={image}
+                alt='skin_photo'
+              />
+            ))}
+          </div>
         </ReportInfoWrapper>
       )}
 
@@ -118,24 +132,47 @@ const PrintReport = () => {
             <h6>Sun Exposure</h6>
             <p>{userData?.sun_exposure || 'N/A'}</p>
           </div>
+
           <div className='paragraph-box'>
             <h6>Dietary Habits</h6>
             <p>{userData?.dietary_habit || 'N/A'}</p>
           </div>
+
+          <div className='paragraph-box'>
+            <h6>Occupational hazards</h6>
+            <p>{userData?.location || 'N/A'}</p>
+          </div>
+
+          <div className='paragraph-box'>
+            <h6>Recent Travels</h6>
+            <p>{userData?.recent_travels || 'N/A'}</p>
+          </div>
+        </div>
+      </ReportInfoWrapper>
+
+      {/* Area of localization */}
+      <ReportInfoWrapper title='Area of localization'>
+        <div className='info-grid'>
           <div className='paragraph-box'>
             <h6>Location</h6>
             <p>{userData?.location || 'N/A'}</p>
           </div>
+
+          <div className='paragraph-box'>
+            <h6>Intensity</h6>
+            <p>{userData?.intensity || 'N/A'}</p>
+          </div>
+
+          <div className='paragraph-box'>
+            <h6>Spread</h6>
+            <p>{userData?.spread || 'N/A'}</p>
+          </div>
+
           <div className='paragraph-box'>
             <h6>Trigger</h6>
             <p>{userData?.trigger || 'N/A'}</p>
           </div>
         </div>
-      </ReportInfoWrapper>
-
-      {/* Additional Notes */}
-      <ReportInfoWrapper title='Additional Notes'>
-        <p>{reportData?.note || 'N/A'}</p>
       </ReportInfoWrapper>
 
       {/* AI Generated Notes */}
@@ -194,6 +231,11 @@ const PrintReport = () => {
               ))}
           </p>
         </div>
+      </ReportInfoWrapper>
+
+      {/* Additional Notes */}
+      <ReportInfoWrapper title='Additional Notes'>
+        <p>{reportData?.note || 'N/A'}</p>
       </ReportInfoWrapper>
     </Container>
   );

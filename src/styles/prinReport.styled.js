@@ -10,12 +10,15 @@ export const ReportHeader = styled.section`
   div {
     flex: 1;
 
-    p:nth-child(1) {
-      font-size: 1.17rem;
+    h5 {
+      font-size: 15px;
       text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 2px;
     }
-    p:nth-child(2) {
-      font-size: clamp(1.375rem, 1.2014rem + 0.5556vw, 1.6875rem);
+
+    p {
+      font-size: clamp(1rem, 1.2014rem + 0.5556vw, 24px);
       font-weight: 500;
     }
 
