@@ -8,43 +8,28 @@ const allowedMimeTypes = [
   'image/heic',
 ];
 
-const ImageUploadBox = ({ imageFile, onChange }) => {
-  const [imagesPreview, setImagesPreview] = useState([]);
-
+const ImageUploadBox = ({ imageFile, imagesPreview, onChange }) => {
   // Handle image change
   const handleChange = (event) => {
-    const files = event.target.files; // Get all selected files
-    console.log(files);
-
+    const files = event.target.files;
     if (!files.length) return;
-
-    setImagesPreview([]); // Clear previous images
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-
+      // Validate file type
       if (!allowedMimeTypes.includes(file.type)) {
         toast.error(
           `Invalid file type for ${file.name}. Only JPEG, PNG, WEBP, and HEIC are allowed.`
         );
         continue;
       }
-
+      // Validate file size
       if (file.size > 5 * 1024 * 1024) {
         toast.error(`File size for ${file.name} should not exceed 5MB.`);
         continue;
       }
-
-      // Convert the image to base64
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const imageBase64String = reader.result;
-        setImagesPreview((prev) => [...prev, imageBase64String]);
-      };
-      reader.readAsDataURL(file);
     }
 
-    // console.log(imagesPreview);
     onChange(event);
   };
 
@@ -57,9 +42,8 @@ const ImageUploadBox = ({ imageFile, onChange }) => {
         {imageFile ? (
           <div className='w-full px-2 flex justify-center overflow-hidden'>
             {imagesPreview.map((image, index) => (
-              <div className=''>
+              <div className='' key={index}>
                 <img
-                  key={index}
                   src={image}
                   className={'h-full max-h-80 object-cover px-1'}
                   alt='upload image'

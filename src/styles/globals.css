@@ -67,8 +67,8 @@ body {
   }
 
   .heading-3 {
-    font-size: clamp(1.625rem, 1.4167rem + 0.6667vw, 2rem);
-    font-weight: 500;
+    font-size: clamp(1.3rem, 1.4167rem + 0.6667vw, 1rem);
+    font-weight: 600;
     padding-bottom: 0.7rem;
     border-bottom: 1px solid #9c9c9c;
   }

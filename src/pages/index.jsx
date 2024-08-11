@@ -8,6 +8,7 @@ import ImageUploadBox from '@/components/ui/ImageUploadBox';
 export default function Home() {
   const router = useRouter();
   const [formData, setFormData] = useState({});
+  const [imagesPreview, setImagesPreview] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -26,7 +27,17 @@ export default function Home() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setFormData((prev) => ({ ...prev, imageFile: file, mimeType: file.type }));
-    console.log('handleImageChange -> file', file);
+
+    setImagesPreview([]);
+    // Convert the image to base64
+    for (let i = 0; i < event.target.files.length; i++) {
+      const file = event.target.files[i];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagesPreview((prev) => [...prev, reader.result]);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -58,6 +69,7 @@ export default function Home() {
       if (status === 200) {
         const reportData = JSON.parse(data);
         localStorage.setItem('reportData', JSON.stringify(reportData));
+        localStorage.setItem('reportImages', JSON.stringify(imagesPreview));
         // Redirect to report page
         router.push('/report');
       }
@@ -78,6 +90,7 @@ export default function Home() {
 
           <ImageUploadBox
             imageFile={formData.imageFile}
+            imagesPreview={imagesPreview}
             onChange={(event) => handleImageChange(event)}
           />
         </div>
