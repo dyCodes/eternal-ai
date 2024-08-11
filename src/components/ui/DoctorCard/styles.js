@@ -63,10 +63,13 @@ export const Card = styled.div`
       p {
         display: flex;
         align-items: center;
-        gap: 0.1875rem;
         font-size: 14px;
         font-weight: 500;
         color: #9c9c9c;
+
+        .bar {
+          margin: 0 0.125rem;
+        }
 
         @media (max-width: 402px) {
           flex-direction: column;
