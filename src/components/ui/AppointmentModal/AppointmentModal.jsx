@@ -7,20 +7,50 @@ import { appointmentHelpText } from '@/constants';
 import Link from 'next/link';
 import { useState } from 'react';
 
-const AppointmentModal = ({ onCloseModal, selectedDoctor }) => {
+/**
+ * AppointmentModal is a component that displays a modal with doctor's information and allows users to book an appointment.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Function} props.onCloseModal - A function to close the modal.
+ * @param {Object} props.selectedDoctor - An object containing doctor's information.
+ * @param {string} props.selectedDoctor.name - The doctor's name.
+ * @param {number} props.selectedDoctor.ratings - The doctor's ratings.
+ * @param {string} props.selectedDoctor.rate - The doctor's rate.
+ * @param {number} props.selectedDoctor.experience - The doctor's experience in years.
+ * @param {number} props.selectedDoctor.total_patients - The total number of patients the doctor has.
+ * @param {number} props.selectedDoctor.total_reviews - The total number of reviews for the doctor.
+ * @param {string} props.selectedDoctor.about - A brief description about the doctor.
+ * @param {string} props.selectedDoctor.image - The URL of the doctor's image.
+ *
+ * @returns {JSX.Element} - The AppointmentModal component.
+ */
+function AppointmentModal({ onCloseModal, selectedDoctor }) {
   const [documentFile, setDocumentFile] = useState('');
+
+  /**
+   * Handles the booking of an appointment.
+   * Displays a toast message if no document is uploaded, otherwise closes the modal and resets the document file.
+   */
   const handleBookAppointment = () => {
     if (!documentFile) {
       toast.error('Please upload document for appointment');
       return;
     }
     toast.success('Booked successfully');
+    setDocumentFile('');
     onCloseModal();
   };
 
+  /**
+   * Handles the upload of a document.
+   * Updates the document file state with the name of the uploaded file.
+   *
+   * @param {Object} file - The uploaded file.
+   */
   const handleUpload = (file) => {
     setDocumentFile(file.name);
   };
+
   return (
     <>
       <BackDrop onClick={onCloseModal} />
@@ -93,6 +123,6 @@ const AppointmentModal = ({ onCloseModal, selectedDoctor }) => {
       </StyledModal>
     </>
   );
-};
+}
 
 export default AppointmentModal;

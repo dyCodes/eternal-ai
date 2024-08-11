@@ -6,9 +6,20 @@ import Button from '../ui/Button/Button';
 import { MdOutlinePhone } from 'react-icons/md';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-const Header = () => {
+/**
+ * The Header component is responsible for rendering the header section of the application.
+ * It displays the application's name and provides navigation buttons based on the current route.
+ *
+ * @returns {JSX.Element} - The rendered Header component.
+ */
+function Header() {
   const router = useRouter();
 
+  /**
+   * The pathname of the current route.
+   *
+   * @type {string}
+   */
   const pathname = router.pathname;
 
   return (
@@ -39,6 +50,6 @@ const Header = () => {
       </Container>
     </header>
   );
-};
+}
 
 export default Header;

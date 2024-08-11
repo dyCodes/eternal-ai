@@ -1,6 +1,15 @@
 import { toast } from 'react-toastify';
 import { UploadContainer } from './styles';
 
+/**
+ * A component for uploading a report document.
+ *
+ * @param {string} modalType - The type of modal this component is used in.
+ * @param {string} helpText - The help text to display when no file is selected.
+ * @param {function} onChange - A callback function to handle file selection.
+ * @param {File} documentFile - The currently selected document file.
+ * @returns {JSX.Element} - The JSX element for the ReportUploadBox component.
+ */
 function ReportUploadBox({ modalType, helpText, onChange, documentFile }) {
   const handleChange = (event) => {
     const file = event.target.files[0];

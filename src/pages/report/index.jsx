@@ -8,10 +8,23 @@ import { Preloader } from '@/components/ui/Preloader';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 
-const Report = () => {
+/**
+ * This function is responsible for rendering the report page.
+ * It retrieves the report data from local storage and displays it in various components.
+ * If the report data is not available, it redirects the user to the home page.
+ * It also includes a download button to generate a printable version of the report.
+ *
+ * @returns {JSX.Element} - The JSX element representing the report page.
+ */
+function Report() {
   const router = useRouter();
   const [reportData, setReportData] = useState(null);
 
+  /**
+   * This effect hook retrieves the report data from local storage and sets it in the component's state.
+   * If the report data is not available, it redirects the user to the home page.
+   * It also checks if all arrays in the report data are empty and displays a toast message if they are.
+   */
   useEffect(() => {
     const storedReportData = localStorage.getItem('reportData');
 
@@ -40,6 +53,12 @@ const Report = () => {
     }
   }, []);
 
+  /**
+   * This conditionally renders the preloader component if the report data is not available.
+   * Otherwise, it renders the report cards and the download button.
+   *
+   * @returns {JSX.Element} - The JSX element representing the report page content.
+   */
   if (!reportData) {
     return <Preloader />;
   }
@@ -70,6 +89,6 @@ const Report = () => {
       <ChatBox />
     </Container>
   );
-};
+}
 
 export default Report;

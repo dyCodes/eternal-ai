@@ -5,12 +5,23 @@ import { SiGooglegemini } from 'react-icons/si';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const PrintReport = () => {
+/**
+ * This function is responsible for rendering the printable report page.
+ * It retrieves the report data, user data, and images from local storage,
+ * and displays them in a formatted manner.
+ *
+ * @returns {JSX.Element} - The JSX element representing the printable report page.
+ */
+function PrintReport() {
   const router = useRouter();
   const [reportData, setReportData] = useState(null);
   const [userData, setUserData] = useState(null);
   const [reportImages, setReportImages] = useState(null);
 
+  /**
+   * This effect hook retrieves the report data, user data, and images from local storage.
+   * If no report data is found, it redirects the user to the home page.
+   */
   useEffect(() => {
     const storedUserData = localStorage.getItem('userData');
     const storedReportData = localStorage.getItem('reportData');
@@ -28,6 +39,9 @@ const PrintReport = () => {
     }
   }, []);
 
+  /**
+   * This effect hook triggers the print functionality when the report data and user data are available.
+   */
   useEffect(() => {
     if (reportData && userData) {
       // window.print();
@@ -239,6 +253,5 @@ const PrintReport = () => {
       </ReportInfoWrapper>
     </Container>
   );
-};
-
+}
 export default PrintReport;
