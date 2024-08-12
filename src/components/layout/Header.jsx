@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../ui/Container';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -25,7 +25,7 @@ function Header() {
   const router = useRouter();
   const pathname = router.pathname;
   const { user, onLoginSuccess, onLoginError, logOutUser } = useAuthContext();
-  const [openNavbar, setOpenNavbar] = React.useState(false);
+  const [openNavbar, setOpenNavbar] = useState(false);
 
   const toggleNavbar = () => {
     setOpenNavbar(!openNavbar);

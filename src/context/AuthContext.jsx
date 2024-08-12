@@ -14,6 +14,9 @@ export const AuthProvider = ({ children }) => {
       const userJson = JSON.parse(storedUser);
       setUser(userJson);
     }
+
+    // Set the default language to English
+    document.documentElement.lang = 'en';
   }, []);
 
   const onLoginSuccess = (credentialResponse) => {
