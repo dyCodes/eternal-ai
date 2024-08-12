@@ -43,7 +43,7 @@ Eternal AI aims to:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/username/eternal-ai.git
+   git clone https://github.com/dyCodes/eternal-ai.git
    ```
 
 2. **Navigate to the project directory**:
