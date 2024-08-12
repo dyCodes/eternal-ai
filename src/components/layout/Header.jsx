@@ -104,6 +104,7 @@ function Header() {
             type='button'
             onClick={toggleNavbar}
             className='md:hidden flex items-center w-8 h-8 justify-center text-sm text-[#000] rounded-md  hover:text-[#444]'
+            aria-label='Toggle Navbar'
           >
             <svg
               className='w-5 h-5 text-secondary'
