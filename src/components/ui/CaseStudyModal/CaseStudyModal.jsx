@@ -1,12 +1,49 @@
 import { useState } from 'react';
 import { BackDrop, StyledModal } from './styles';
+import { toast } from 'react-toastify';
 import { FaCheck } from 'react-icons/fa';
+import { ReportUploadBox } from '@/components';
+import { caseStudyHelpText } from '@/constants';
 
-const CaseStudyModal = ({ setModalIsOpen }) => {
+/**
+ * A modal component for booking a case study for medical students.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Function} props.onCloseModal - A function to close the modal.
+ *
+ * @returns {JSX.Element} - The modal component.
+ */
+function CaseStudyModal({ onCloseModal }) {
   const [rememberUser, setRememberUser] = useState(false);
+  const [documentFile, setDocumentFile] = useState('');
+
+  /**
+   * Handles the confirmation button click.
+   * Displays a toast message and closes the modal if a document file is uploaded.
+   */
+  function handleConfirmation() {
+    if (!documentFile) {
+      toast.error('Please upload document for appointment');
+      return;
+    }
+    toast.success('Booked successfully');
+    setDocumentFile('');
+    onCloseModal();
+  }
+
+  /**
+   * Handles the document upload.
+   * Updates the document file name in the component's state.
+   *
+   * @param {Object} file - The uploaded file.
+   */
+  const handleUpload = (file) => {
+    setDocumentFile(file.name);
+  };
+
   return (
     <>
-      <BackDrop onClick={() => setModalIsOpen(false)} />
+      <BackDrop onClick={onCloseModal} />
       <StyledModal>
         <div className='banner' />
         <div className='content'>
@@ -23,13 +60,12 @@ const CaseStudyModal = ({ setModalIsOpen }) => {
             insights, either through a call or email.
           </p>
 
-          <div className='upload'>
-            <p>
-              Add your desired gemini generated demerlogy result, Your
-              participation is entirely voluntary, and your privacy is always
-              protected.
-            </p>
-          </div>
+          <ReportUploadBox
+            modalType='case-study'
+            helpText={caseStudyHelpText}
+            onChange={(file) => handleUpload(file)}
+            documentFile={documentFile}
+          />
 
           <div className='checkbox'>
             <button
@@ -44,11 +80,13 @@ const CaseStudyModal = ({ setModalIsOpen }) => {
             </span>
           </div>
 
-          <button className='confirm'>Confirm</button>
+          <button className='confirm' onClick={handleConfirmation}>
+            Confirm
+          </button>
         </div>
       </StyledModal>
     </>
   );
-};
+}
 
 export default CaseStudyModal;
