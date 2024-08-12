@@ -9,9 +9,10 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('userAuth');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      const userJson = JSON.parse(storedUser);
+      setUser(userJson);
     }
   }, []);
 
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     toast.success('Logged in with Google!', { position: 'top-center' });
 
     // Save user data to local storage
-    localStorage.setItem('user', JSON.stringify(decoded));
+    localStorage.setItem('userAuth', JSON.stringify(decoded));
 
     console.log('decoded', decoded);
   };
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOutUser = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('userAuth');
     setUser(null);
     googleLogout();
     toast.success('Logged out successfully!', { position: 'top-center' });

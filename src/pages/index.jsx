@@ -4,12 +4,14 @@ import { useRouter } from 'next/router';
 import httpClient from '@/api/axios';
 import { toast } from 'react-toastify';
 import ImageUploadBox from '@/components/ui/ImageUploadBox';
+import { useAuthContext } from '@/context/AuthContext';
 
 export default function Home() {
   const router = useRouter();
   const [formData, setFormData] = useState({});
   const [imagesPreview, setImagesPreview] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const userData = localStorage.getItem('userData');
@@ -50,6 +52,7 @@ export default function Home() {
       imageFile: null,
       mimeType: null,
       date: new Date().toDateString(),
+      name: user?.name,
     };
     localStorage.setItem('userData', JSON.stringify(userData));
 
