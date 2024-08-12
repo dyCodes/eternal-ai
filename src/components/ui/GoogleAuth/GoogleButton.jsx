@@ -22,7 +22,7 @@ export const GoogleSignedInButton = ({ user, logOutUser }) => {
 
   return (
     <button
-      class='flex items-center bg-white border-gray-300 rounded-lg shadow-sm px-4 py-2 text-sm font-medium text-[#222] hover:bg-gray-50'
+      className='flex items-center bg-white border border-[#dadce0] rounded-lg shadow-sm px-4 py-2 text-sm font-medium text-[#222] hover:bg-gray-50'
       onClick={logOutUser}
     >
       <div className='flex items-center gap-x-2'>
