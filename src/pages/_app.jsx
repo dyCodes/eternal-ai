@@ -35,11 +35,6 @@ export default function App({ Component, pageProps }) {
       </GoogleOAuthProvider>
 
       <ToastContainer closeOnClick pauseOnFocusLoss={false} />
-
-      <script
-        src='https://website-widgets.pages.dev/dist/sienna.min.js'
-        defer
-      ></script>
     </>
   );
 }
