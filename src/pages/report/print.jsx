@@ -4,6 +4,7 @@ import { ReportHeader } from '@/styles/prinReport.styled';
 import { SiGooglegemini } from 'react-icons/si';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useAuthContext } from '@/context/AuthContext';
 
 /**
  * This function is responsible for rendering the printable report page.
@@ -17,6 +18,7 @@ function PrintReport() {
   const [reportData, setReportData] = useState(null);
   const [userData, setUserData] = useState(null);
   const [reportImages, setReportImages] = useState(null);
+  const { user } = useAuthContext();
 
   /**
    * This effect hook retrieves the report data, user data, and images from local storage.
@@ -53,7 +55,7 @@ function PrintReport() {
       <ReportHeader>
         <div>
           <h5>Patient</h5>
-          <p>{userData?.name || 'N/A'}</p>
+          <p>{user?.name || 'N/A'}</p>
         </div>
 
         <div>
@@ -77,7 +79,7 @@ function PrintReport() {
       </ReportHeader>
 
       {/* Photos */}
-      {reportImages?.length && (
+      {reportImages?.length ? (
         <ReportInfoWrapper title='Photo'>
           <div className='flex items-center gap-2 flex-wrap'>
             {reportImages.map((image, index) => (
@@ -90,7 +92,7 @@ function PrintReport() {
             ))}
           </div>
         </ReportInfoWrapper>
-      )}
+      ) : null}
 
       {/* Symptoms */}
       <ReportInfoWrapper title='Symptoms'>

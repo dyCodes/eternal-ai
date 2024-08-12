@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from '@/context/AuthContext';
 
 export default function App({ Component, pageProps }) {
   const clientId = process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID;
@@ -26,9 +27,11 @@ export default function App({ Component, pageProps }) {
       </Head>
 
       <GoogleOAuthProvider clientId={clientId}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AuthProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthProvider>
       </GoogleOAuthProvider>
 
       <ToastContainer closeOnClick pauseOnFocusLoss={false} />

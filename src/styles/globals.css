@@ -87,6 +87,22 @@ body {
   transition: all 0.3s;
 }
 
+/* Layout */
+/* NavBar */
+@media screen and (max-width: 767px) {
+  .mobile_nav {
+    left: 0;
+    right: 0;
+    @apply absolute py-4 px-4 top-[72px] w-[85%] mx-auto border-y border-gray-100 rounded-xl bg-[#fff] shadow-lg z-auto;
+  }
+  .mobile_nav .buttons {
+    @apply flex flex-col items-start divide-y divide-gray-300;
+  }
+  .mobile_nav .googleBtn {
+    @apply w-full mt-3 pt-3;
+  }
+}
+
 /* Other styles */
 
 /* FORM */
