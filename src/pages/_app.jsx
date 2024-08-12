@@ -1,10 +1,13 @@
 import { Layout } from '@/components';
 import '@/styles/globals.css';
 import Head from 'next/head';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function App({ Component, pageProps }) {
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID;
+
   return (
     <>
       <Head>
@@ -21,9 +24,13 @@ export default function App({ Component, pageProps }) {
           content='AI-driven skin condition assessments based on user images and symptoms, addressing dermatological care gaps in regions with limited specialist access.'
         />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+
+      <GoogleOAuthProvider clientId={clientId}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </GoogleOAuthProvider>
+
       <ToastContainer closeOnClick pauseOnFocusLoss={false} />
     </>
   );

@@ -10,7 +10,7 @@ const Button = ({
   disabled = false,
   loading,
 }) => {
-  const styles = `btn flex items-center gap-x-2 text-[15px] ${className}`;
+  const styles = `btn flex items-center gap-x-2 text-[15px] font-medium shadow-sm ${className}`;
 
   return (
     <button
