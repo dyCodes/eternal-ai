@@ -46,7 +46,7 @@ function PrintReport() {
    */
   useEffect(() => {
     if (reportData && userData) {
-      // window.print();
+      window.print();
     }
   }, [reportData]);
 
