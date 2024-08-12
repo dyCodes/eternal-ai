@@ -1,4 +1,3 @@
-import { googleLogout } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -20,8 +19,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const onLoginSuccess = (credentialResponse) => {
-    console.log('credentialResponse', credentialResponse);
-
     // Decode the JWT token to get user data
     const decoded = jwtDecode(credentialResponse?.credential);
     setUser(decoded);
@@ -29,8 +26,6 @@ export const AuthProvider = ({ children }) => {
 
     // Save user data to local storage
     localStorage.setItem('userAuth', JSON.stringify(decoded));
-
-    console.log('decoded', decoded);
   };
 
   const onLoginError = (error) => {
@@ -39,9 +34,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logOutUser = () => {
-    localStorage.removeItem('userAuth');
     setUser(null);
-    googleLogout();
+    localStorage.clear();
     toast.success('Logged out successfully!', { position: 'top-center' });
   };
 

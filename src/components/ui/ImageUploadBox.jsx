@@ -14,6 +14,12 @@ const ImageUploadBox = ({ imageFile, imagesPreview, onChange }) => {
     const files = event.target.files;
     if (!files.length) return;
 
+    // Set limit to 3 images
+    if (files.length > 3) {
+      toast.error('You can only upload a maximum of 3 images.');
+      return;
+    }
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       // Validate file type

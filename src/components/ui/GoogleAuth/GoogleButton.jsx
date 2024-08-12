@@ -7,9 +7,6 @@ export const GoogleButton = ({ onLoginSuccess, onLoginError }) => {
       theme='outline'
       text='continue_with'
       size='large'
-      click_listener={(e) => {
-        console.log('click_listener', e);
-      }}
       cancel_on_tap_outside={true}
       onSuccess={onLoginSuccess}
       onError={onLoginError}
