@@ -15,7 +15,7 @@ Eternal AI aims to:
 
 ## Screenshot
 
-<!-- Include a screenshot of the application here -->
+![eternal-ai-screenshot](https://github.com/user-attachments/assets/4dabb40e-1d91-4bbd-84c4-fb61ec973ee5)
 
 ## Features
 
@@ -29,3 +29,54 @@ Eternal AI aims to:
 - **Frontend**: React/Next.js, Tailwind CSS
 - **Backend**: Node.js/Express
 - **AI Integration**: Google Generative AI (Gemini), providing powerful AI-driven skin condition assessments based on uploaded image and symptom data.
+
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm/yarn
+
+### Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/username/eternal-ai.git
+   ```
+
+2. **Navigate to the project directory**:
+
+   ```bash
+   cd eternal-ai
+   ```
+
+3. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+4. **Set up environment variables**:
+   - Create a `.env.local` file in the root directory.
+   - Add the following environment variables:
+     ```bash
+     NEXT_PUBLIC_API_URL=http://localhost:3000/api
+     NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID=your-google-generative-ai-api-key
+     ```
+
+### Running the Application
+
+To start the application in development mode:
+
+```bash
+npm run dev
+```
+
+The application should now be running on `http://localhost:3000`.
+
+## Deployment
+
+Eternal AI can be deployed on platforms like Vercel, which are well-suited for Next.js applications. Ensure that your environment variables are configured correctly for the production environment.
+
