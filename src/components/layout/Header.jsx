@@ -10,6 +10,9 @@ import {
   GoogleButton,
   GoogleSignedInButton,
 } from '../ui/GoogleAuth/GoogleButton';
+import { Popover, PopoverTrigger } from '@radix-ui/react-popover';
+import PopoverContent from '../ui/Popover/Popover';
+import { BiLogOut } from 'react-icons/bi';
 
 /**
  * The Header component is responsible for rendering the header section of the application.
@@ -69,7 +72,23 @@ function Header() {
 
               <div className='googleBtn'>
                 {user ? (
-                  <GoogleSignedInButton user={user} logOutUser={logOutUser} />
+                  <Popover className='z-40'>
+                    <PopoverTrigger>
+                      <GoogleSignedInButton user={user} />
+                    </PopoverTrigger>
+
+                    <PopoverContent className={'px-8'} showCloseIcon={false}>
+                      <div className='fx-center'>
+                        <Button
+                          onClick={logOutUser}
+                          className='bg-red-700 !px-8 text-white'
+                        >
+                          <span>Sign out</span>
+                          <BiLogOut />
+                        </Button>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
                 ) : (
                   <GoogleButton
                     onLoginSuccess={onLoginSuccess}

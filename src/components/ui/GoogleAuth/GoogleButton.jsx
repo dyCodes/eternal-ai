@@ -17,14 +17,9 @@ export const GoogleButton = ({ onLoginSuccess, onLoginError }) => {
   );
 };
 
-export const GoogleSignedInButton = ({ user, logOutUser }) => {
-  console.log('user: ', user);
-
+export const GoogleSignedInButton = ({ user }) => {
   return (
-    <button
-      className='flex items-center bg-white border border-[#dadce0] rounded-lg shadow-sm px-4 py-2 text-sm font-medium text-[#222] hover:bg-gray-50'
-      onClick={logOutUser}
-    >
+    <button className='flex items-center bg-white border border-[#dadce0] rounded-lg shadow-sm px-4 py-2 text-sm font-medium text-[#222] hover:bg-gray-50'>
       <div className='flex items-center gap-x-2'>
         <img
           className='w-6 rounded-full'
