@@ -1,10 +1,12 @@
 import { jwtDecode } from 'jwt-decode';
+import { useRouter } from 'next/router';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
+  const router = useRouter();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -12,6 +14,9 @@ export const AuthProvider = ({ children }) => {
     if (storedUser) {
       const userJson = JSON.parse(storedUser);
       setUser(userJson);
+    } else {
+      setUser(null);
+      localStorage.clear();
     }
 
     // Set the default language to English
@@ -37,6 +42,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.clear();
     toast.success('Logged out successfully!', { position: 'top-center' });
+    router.push('/'); // Redirect to home page
   };
 
   return (

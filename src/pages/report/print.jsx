@@ -79,7 +79,7 @@ function PrintReport() {
       </ReportHeader>
 
       {/* Photos */}
-      {reportImages?.length ? (
+      {reportImages?.[0] ? (
         <ReportInfoWrapper title='Photo'>
           <div className='flex items-center gap-2 flex-wrap'>
             {reportImages.map((image, index) => (

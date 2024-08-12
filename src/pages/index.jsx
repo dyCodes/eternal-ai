@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const userData = localStorage.getItem('userData');
     // Set form data from local storage
-    if (userData) {
+    if (user && userData) {
       setFormData(JSON.parse(userData));
     }
   }, []);
