@@ -72,7 +72,10 @@ export default function Home() {
       if (status === 200) {
         const reportData = JSON.parse(data);
         localStorage.setItem('reportData', JSON.stringify(reportData));
-        localStorage.setItem('reportImages', JSON.stringify(imagesPreview));
+        localStorage.setItem(
+          'reportImages',
+          JSON.stringify([imagesPreview[0]])
+        );
         // Redirect to report page
         router.push('/report');
       }

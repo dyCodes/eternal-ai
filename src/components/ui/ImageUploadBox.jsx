@@ -11,7 +11,7 @@ const allowedMimeTypes = [
 const ImageUploadBox = ({ imageFile, imagesPreview, onChange }) => {
   // Handle image change
   const handleChange = (event) => {
-    const files = event.target.files;
+    let files = event.target.files;
     if (!files.length) return;
 
     // Set limit to 3 images
@@ -27,16 +27,18 @@ const ImageUploadBox = ({ imageFile, imagesPreview, onChange }) => {
         toast.error(
           `Invalid file type for ${file.name}. Only JPEG, PNG, WEBP, and HEIC are allowed.`
         );
-        continue;
+        return (files = null);
       }
       // Validate file size
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error(`File size for ${file.name} should not exceed 5MB.`);
-        continue;
+      if (file.size > 3 * 1024 * 1024) {
+        toast.error(`File size for ${file.name} should not exceed 3MB.`);
+        return (files = null);
       }
     }
 
-    onChange(event);
+    if (files) {
+      onChange(event);
+    }
   };
 
   return (
@@ -79,7 +81,7 @@ const ImageUploadBox = ({ imageFile, imagesPreview, onChange }) => {
               drop
             </p>
             <p className='text-xs text-gray-500'>
-              PNG, JPG, WEBP or HEIC (MAX: 5MB)
+              PNG, JPG, WEBP or HEIC (MAX: 3MB)
             </p>
           </div>
         )}
